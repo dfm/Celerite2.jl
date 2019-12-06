@@ -16,7 +16,7 @@ end
 
 function get_matrices()
   N, x, diag, Z = get_data()
-  return Celerite2.get_celerite_matrices(get_term(), x, diag)..., Z
+  return Celerite2.get_matrices(get_term(), x, diag)..., Z
 end
 
 function get_data()
@@ -96,8 +96,6 @@ function test_solve()
   return maximum(abs.(Z - Y0)) < 1e-12
 end
 
-
-
 @testset "core" begin
 
   @test test_to_dense()
@@ -105,5 +103,28 @@ end
   @test test_factor()
   @test test_dot_tril()
   @test test_solve()
+
+end
+
+function test_logp()
+  N, x, diag, Z = get_data()
+  y = Z[:, 1]
+  a, U, V, P, Z = get_matrices()
+  K = Celerite2.to_dense(a, U, V, P)
+
+  term = get_term()
+  logp = Celerite2.logp(term, x, y, sqrt.(diag))
+
+  chol = cholesky(K)
+  logp0 = -0.5 * transpose(y) * (chol \ y)
+  logp0 -= 0.5 * logdet(chol)
+  logp0 -= 0.5 * N * log(2 * pi)
+
+  return abs(logp - logp0) < 1e-12
+end
+
+@testset "gp" begin
+
+  @test test_logp()
 
 end

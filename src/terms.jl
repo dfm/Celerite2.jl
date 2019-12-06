@@ -1,6 +1,6 @@
 import Base.+
 
-function get_celerite_matrices(
+function get_matrices(
   ar::AbstractArray{T, 1},
   cr::AbstractArray{T, 1},
   ac::AbstractArray{T, 1},
@@ -44,8 +44,8 @@ function get_coefficients(term::Term)
   return zeros(0), zeros(0), zeros(0), zeros(0), zeros(0), zeros(0)
 end
 
-function get_celerite_matrices(term::Term, x, diag)
-  return get_celerite_matrices(get_coefficients(term)..., x, diag)
+function get_matrices(term::Term, x, diag)
+  return get_matrices(get_coefficients(term)..., x, diag)
 end
 
 struct TermSum <: Term

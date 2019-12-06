@@ -31,7 +31,7 @@ function matmul(
   U::AbstractArray{T, 2},
   V::AbstractArray{T, 2},
   P::AbstractArray{T, 2},
-  Z::AbstractArray{T, 2}
+  Z::AbstractArray{T}
 ) where T
 
   N, J = size(U)
@@ -86,7 +86,7 @@ function solve!(
   P::AbstractArray{T, 2},
   d::AbstractArray{T, 1},
   W::AbstractArray{T, 2},
-  Z::AbstractArray{T, 2}
+  Z::AbstractArray{T}
 ) where T
 
   N, J = size(U)
@@ -113,7 +113,7 @@ function dot_tril!(
   P::AbstractArray{T, 2},
   d::AbstractArray{T, 1},
   W::AbstractArray{T, 2},
-  Z::AbstractArray{T, 2}
+  Z::AbstractArray{T}
 ) where T
 
   N, J = size(U)
