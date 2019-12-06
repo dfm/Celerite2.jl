@@ -1,0 +1,7 @@
+name = "Celerite2"
+uuid = "6cdedfe3-24dc-42ad-8f9a-5dd2a7e1e728"
+authors = ["Dan F-M <foreman.mackey@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
